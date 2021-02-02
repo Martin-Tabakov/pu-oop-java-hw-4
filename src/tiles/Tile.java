@@ -1,45 +1,55 @@
 package tiles;
 
 import java.awt.*;
-import java.text.AttributedCharacterIterator;
 
 public abstract class Tile {
 
-    protected int placeX;
-    protected int placeY;
+    public Coordinate boardPlacement;
 
     public static final int WIDTH = 50;
     public static final int HEIGHT = 50;
 
-    protected Color fillColor;
+    public Color fillColor;
     protected Color borderColor;
     protected Color letterColor;
 
-    protected String symbols = "";
+    public String symbols = "";
 
-    protected Tile(int placeX,int placeY ,Color fillColor) {
-        this.placeX = placeX;
-        this.placeY = placeY;
+    protected Tile(int placeCol, int placeRow, Color fillColor) {
+        this.boardPlacement = new Coordinate(placeRow,placeCol);
         this.fillColor = fillColor;
         this.borderColor = fillColor.darker();
-        this.letterColor = new Color(255,50,50);
+        this.letterColor = new Color(255, 50, 50);
     }
 
-    public int getPositionX() {
-        return placeX * WIDTH;
+    public int getPixelPosCol() {
+        return boardPlacement.getCol() * WIDTH+WIDTH;
     }
 
-    public int getPositionY() {
-        return placeY * HEIGHT+15;
+    public int getPixelPosRow() {
+        return boardPlacement.getRow() * HEIGHT+HEIGHT;
     }
 
-    public void render(Graphics g){
+    public int getPlaceCol() {
+        return boardPlacement.getCol();
+    }
+
+    public int getPlaceRow() {
+        return boardPlacement.getRow();
+    }
+
+    public void changeColor(Color c) {
+        fillColor = c;
+        borderColor = c.darker();
+    }
+
+    public void render(Graphics g) {
         g.setColor(borderColor);
-        g.drawRect(getPositionX(),getPositionY(),WIDTH,HEIGHT);
+        g.drawRect(getPixelPosCol(), getPixelPosRow(), WIDTH, HEIGHT);
         g.setColor(fillColor);
-        g.fillRect(getPositionX()+1,getPositionY()+1,WIDTH-1,HEIGHT-1);
+        g.fillRect(getPixelPosCol() + 1, getPixelPosRow() + 1, WIDTH - 1, HEIGHT - 1);
         g.setColor(letterColor);
         g.setFont(g.getFont().deriveFont(20f));
-        g.drawString(symbols,getPositionX()+20,getPositionY()+35);
+        g.drawString(symbols, getPixelPosCol() + 20, getPixelPosRow() + 35);
     }
 }

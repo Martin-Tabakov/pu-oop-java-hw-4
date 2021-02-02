@@ -5,7 +5,7 @@ import java.awt.*;
 public class ImpassableTile extends Tile {
 
 
-    public ImpassableTile(int placeX, int placeY) {
-        super(placeX, placeY, new Color(0, 79, 238));
+    public ImpassableTile(int placeCol, int placeRow) {
+        super(placeCol, placeRow, tileColor.BLUE.color);
     }
 }

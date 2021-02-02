@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class DestinationTile extends Tile{
 
-    public DestinationTile(int placeX, int placeY) {
-        super(placeX, placeY, new Color(213,232,212));
+    public DestinationTile(int placeCol, int placeRow) {
+        super(placeCol, placeRow, tileColor.GREEN.color);
     }
 }
