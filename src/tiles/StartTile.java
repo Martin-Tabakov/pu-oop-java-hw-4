@@ -1,8 +1,8 @@
 package tiles;
 
-import java.awt.*;
+import utility.tileColor;
 
-public class StartTile extends Tile{
+public class StartTile extends Tile {
 
     public StartTile(int placeX, int placeY) {
         super(placeX, placeY, tileColor.YELLOW.color);

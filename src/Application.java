@@ -1,4 +1,4 @@
-import board.Board;
+import ui.Board;
 
 public class Application {
 

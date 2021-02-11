@@ -1,8 +1,8 @@
 package tiles;
 
-import java.awt.*;
+import utility.tileColor;
 
-public class DestinationTile extends Tile{
+public class DestinationTile extends Tile {
 
     public DestinationTile(int placeCol, int placeRow) {
         super(placeCol, placeRow, tileColor.GREEN.color);

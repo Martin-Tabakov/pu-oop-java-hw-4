@@ -1,4 +1,4 @@
-package tiles;
+package utility;
 
 import java.awt.*;
 
