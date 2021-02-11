@@ -14,6 +14,8 @@ public class Board extends JFrame implements MouseListener {
     private final int totalImpassableTiles;
     private final int totalDestinationTiles;
 
+    public boolean restartGame = false;
+
     private Tile activeTile = null;
     private Tile selectedTile = null;
     private DestinationTile winningTile = null;
@@ -137,7 +139,7 @@ public class Board extends JFrame implements MouseListener {
         if (!isWithinBoard) return false;
         String tileName = getTileOnCoordinate(clickedPos).getClass().getSimpleName();
         return isClickedOnAdjacentTile &&
-                tileName.equals("UnvisitedTile") || tileName.equals("DestinationTile");
+                (tileName.equals("UnvisitedTile") || tileName.equals("DestinationTile"));
     }
 
     private void changeTile(Tile newTile) {
@@ -220,11 +222,17 @@ public class Board extends JFrame implements MouseListener {
         repaint();
         if (!canMove()) {
             System.out.println("You are stuck!");
+            PopUp pop = new PopUp(this,"Game Over","You lose");
             return;
         }
 
         if (Coordinate.isEqual(activeTile.boardPlacement, winningTile.boardPlacement)) {
             System.out.println("Game won");
+            PopUp pop = new PopUp(this,"Game Over");
+            if(pop.isSelected) {
+                this.dispose();
+                 new Board(boardSize,totalDestinationTiles,totalImpassableTiles);
+            }
             return;
         }
 
